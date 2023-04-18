@@ -1,0 +1,1 @@
+(()=>{"use strict";console.log({title:"Homework",description:"Do the math homework",dueDate:"20.4.2023",priority:"High",checklist:!1})})();
