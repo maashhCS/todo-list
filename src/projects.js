@@ -1,5 +1,9 @@
-import { toDoObject } from "./todo"
+import { createToDo } from "./todo"
 
-const projectObject = () => {
-    
+const createProject = (title) => {
+    projectToDoArray = [];
+    projectId = 0
+    return {projectToDoArray, title, projectId}
 }
+
+export { createProject };

@@ -1,4 +1,4 @@
-import { toDoObject } from "./todo"
-const project = toDoObject('Homework', 'Do the math homework', '20.4.2023', 'High', false);
+import { createToDo } from "./todo"
+import { createProjectDOM, createAddButton } from "./create_project_DOM"
 
-console.log(project);
+createProjectDOM('Default');
