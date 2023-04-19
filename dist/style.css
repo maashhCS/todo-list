@@ -56,6 +56,14 @@ header div {
     font-size: 20px;
 }
 
+.project-cards {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
 .project-card {
     width: 92%;
     height: 20px;

@@ -1,7 +1,8 @@
 import { createProject } from "./projects";
 import { projectArray } from "./index";
+import { checkprojectArray} from "./check_project";
 
-const sidePanel = document.querySelector('.side-panel');
+const projectCards = document.querySelector('.project-cards');
 function createProjectDOM(title, id){
     const projectCard = document.createElement('div');
     projectCard.classList.add('project-card');
@@ -28,13 +29,33 @@ function createProjectDOM(title, id){
     deleteProjectSVG.setAttribute('draggable', 'false')
     deleteProjectSVG.setAttribute('src', '../src/svg/trash-can-outline-white.svg');
 
-    sidePanel.appendChild(projectCard);
+    projectCards.appendChild(projectCard);
     projectCard.appendChild(projectTitle);
     projectCard.appendChild(editDeleteDiv);
     editDeleteDiv.appendChild(editProjectTitle);
     editProjectTitle.appendChild(editProjectTitleSVG);
     editDeleteDiv.appendChild(deleteProject);
     deleteProject.appendChild(deleteProjectSVG);
+
+    if(title === ''){
+        const inputEditTitle = document.createElement('input');
+        inputEditTitle.classList.add('edit-title-input');
+        inputEditTitle.setAttribute('type', `text`);
+        projectTitle.replaceWith(inputEditTitle);
+        inputEditTitle.focus();
+
+        inputEditTitle.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter' || e.key === 'Escape'){
+                if(inputEditTitle.value === ""){
+                    return;
+                }
+                projectTitle.innerText = inputEditTitle.value;
+                title = inputEditTitle.value;
+                projectArray[id].title = inputEditTitle.value;
+                inputEditTitle.replaceWith(projectTitle);
+            }
+        })
+    }
 
     //listenes for a click on the edit icon and replaces the title with a input field to edit the title
     editProjectTitle.addEventListener('click', () => {
@@ -52,6 +73,9 @@ function createProjectDOM(title, id){
         //listenes for a keypress and changes the title of the project
         inputEditTitle.addEventListener('keydown', (e) => {
             if(e.key === 'Enter' || e.key === 'Escape'){
+                if(inputEditTitle.value === ""){
+                    return;
+                }
                 projectTitle.innerText = inputEditTitle.value;
                 title = inputEditTitle.value;
                 projectArray[id].title = inputEditTitle.value;
@@ -60,6 +84,14 @@ function createProjectDOM(title, id){
         })
     })
 
+
+    //deletes the project
+    deleteProject.addEventListener('click', (e) =>{
+        console.log(e);
+        projectArray.splice(e.target.parentElement.parentElement.parentElement.attributes[1].value, 1);
+        checkprojectArray();
+        console.log(projectArray);
+    })
 }
 
 //creates a add button and listenes for a click to create a new project
@@ -69,8 +101,13 @@ function createAddButton(){
 
     const addButtonSVG = document.createElement('img');
     addButtonSVG.setAttribute('src', '../src/svg/plus-box-outline-white.svg');
-    sidePanel.appendChild(addButton);
+    projectCards.appendChild(addButton);
     addButton.appendChild(addButtonSVG);
+
+    addButton.addEventListener('click', () => {
+        projectArray.push(createProject(''));
+        checkprojectArray();
+    })
 }
 
 export { createProjectDOM, createAddButton };
