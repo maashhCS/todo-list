@@ -87,10 +87,8 @@ function createProjectDOM(title, id){
 
     //deletes the project
     deleteProject.addEventListener('click', (e) =>{
-        console.log(e);
         projectArray.splice(e.target.parentElement.parentElement.parentElement.attributes[1].value, 1);
         checkprojectArray();
-        console.log(projectArray);
     })
 }
 

@@ -7,7 +7,5 @@ export const projectArray = [];
 
 projectArray.push(createProject('Default'));
 projectArray.push(createProject('Default2'));
-projectArray.push(createProject('Default3'));
-projectArray.push(createProject('Default4'));
 
 checkprojectArray();
