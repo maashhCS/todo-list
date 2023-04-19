@@ -1,8 +1,8 @@
 import { createToDo } from "./todo"
 
 const createProject = (title) => {
-    projectToDoArray = [];
-    projectId = 0
+    let projectToDoArray = [];
+    let projectId = 0
     return {projectToDoArray, title, projectId}
 }
 

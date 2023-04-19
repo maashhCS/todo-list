@@ -1,5 +1,5 @@
 const createToDo = (title, description, dueDate, priority, checklist) => {
-    toDoId = 0;
+    let toDoId = 0;
     return { title, description, dueDate, priority, checklist, toDoId};
 }
 

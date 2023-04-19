@@ -1,9 +1,11 @@
 import { createProject } from "./projects";
+import { projectArray } from "./index";
 
 const sidePanel = document.querySelector('.side-panel');
-function createProjectDOM(title){
+function createProjectDOM(title, id){
     const projectCard = document.createElement('div');
     projectCard.classList.add('project-card');
+    projectCard.setAttribute('dataset', `${id}`);
     
     const projectTitle = document.createElement('div');
     projectTitle.classList.add('project-title');
@@ -33,8 +35,34 @@ function createProjectDOM(title){
     editProjectTitle.appendChild(editProjectTitleSVG);
     editDeleteDiv.appendChild(deleteProject);
     deleteProject.appendChild(deleteProjectSVG);
+
+    //listenes for a click on the edit icon and replaces the title with a input field to edit the title
+    editProjectTitle.addEventListener('click', () => {
+        const inputEditTitle = document.createElement('input');
+        inputEditTitle.classList.add('edit-title-input');
+        inputEditTitle.setAttribute('type', `text`);
+        inputEditTitle.setAttribute('value', `${title}`);
+        projectTitle.replaceWith(inputEditTitle);
+
+        //puts the cursor focus at the end of the text inside the input field
+        inputEditTitle.focus();
+        const length = inputEditTitle.value.length;
+        inputEditTitle.setSelectionRange(length, length);
+
+        //listenes for a keypress and changes the title of the project
+        inputEditTitle.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter' || e.key === 'Escape'){
+                projectTitle.innerText = inputEditTitle.value;
+                title = inputEditTitle.value;
+                projectArray[id].title = inputEditTitle.value;
+                inputEditTitle.replaceWith(projectTitle);
+            }
+        })
+    })
+
 }
 
+//creates a add button and listenes for a click to create a new project
 function createAddButton(){
     const addButton = document.createElement('button');
     addButton.classList.add('project-add-btn');
