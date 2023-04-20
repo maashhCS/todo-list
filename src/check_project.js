@@ -15,7 +15,7 @@ export function checkprojectArray(){
 }
 
 const projectCards = document.querySelector('.project-cards');
-export function deleteProjectElement(){
+function deleteProjectElement(){
     while (projectCards.firstChild) {
         projectCards.removeChild(projectCards.firstChild);
     }

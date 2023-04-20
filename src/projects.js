@@ -1,10 +1,10 @@
-import { createToDo } from "./todo"
+import { createTask } from "./task"
 import { projectArray } from "./index";
 
 const createProject = (title) => {
-    let projectToDoArray = [];
+    let projectTaskArray = [];
     let projectId = projectArray.length;
-    return {projectToDoArray, title, projectId}
+    return {projectTaskArray, title, projectId}
 }
 
 export { createProject };
