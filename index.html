@@ -27,28 +27,28 @@
         <div class="modal-create-new-task hide">
             <div class="modal-header">
                 <h3>Add Task</h3>
-                <button id="close-add-task-modal"><img src="../src/svg/close-white.svg" alt=""></button>
+                <button id="close-add-task-modal"><img src="../src/svg/close-white.svg" alt="" draggable="false"></button>
             </div>
             <div class="modal-form">
                 <form action>
                     <div class="form-title">
                         <label for="">Title<span class="title-star">*</span></label>
-                        <input type="text" id="modal-title" name="modal-title" autocomplete="off">
+                        <input type="text" id="form-input-task-title" class="form-add-task-title" name="modal-title" autocomplete="off">
                         <p class="form-title-error hide">Please fill out this field.</p>
                     </div>
                     <div class="form-description-area">
                         <label for="form-description">Description</label>
-                        <textarea class="form-description" rows="3" cols="36"></textarea>
+                        <textarea class="form-add-description" rows="3" cols="36"></textarea>
                     </div>
                     <div class="form-due-date">
                         <label for="dueDate">Due Date</label>
-                        <input type="date" id="dueDate" name="dueDate">
+                        <input type="date" id="form-add-dueDate" name="dueDate">
                     </div>
                     <div class="form-priority-div">
                         <label for="priority">Priority</label>
-                        <select class="form-priority" name="priority">
-                          <option value="low">Low</option>
-                          <option value="medium">Middle</option>
+                        <select class="form-add-priority" name="priority">
+                          <option value="low" selected>Low</option>
+                          <option value="mid">Middle</option>
                           <option value="high">High</option>
                         </select>
                     </div>
