@@ -1,6 +1,7 @@
 import { createProject } from "./projects";
 import { projectArray } from "./index";
 import { checkprojectArray} from "./check_project";
+import { checkTaskArray } from "./check_task";
 
 const projectCards = document.querySelector('.project-cards');
 function createProjectDOM(title, id){
@@ -37,6 +38,7 @@ function createProjectDOM(title, id){
     editDeleteDiv.appendChild(deleteProject);
     deleteProject.appendChild(deleteProjectSVG);
 
+    //checks if the title is empty and if it is empty stops it from changing the title otherwise it gets changed
     if(title === ''){
         const inputEditTitle = document.createElement('input');
         inputEditTitle.classList.add('edit-title-input');
@@ -57,7 +59,12 @@ function createProjectDOM(title, id){
         })
     }
 
-    //listenes for a click on the edit icon and replaces the title with a input field to edit the title
+    //if the project gets clicked the content div gets updated with the projectTaskArray tasks
+    projectCard.addEventListener('click', (e) => {
+        checkTaskArray(e.currentTarget.attributes[1].value);
+    })
+
+    //listens for a click on the edit icon and replaces the title with a input field to edit the title
     editProjectTitle.addEventListener('click', () => {
         const inputEditTitle = document.createElement('input');
         inputEditTitle.classList.add('edit-title-input');
@@ -70,7 +77,7 @@ function createProjectDOM(title, id){
         const length = inputEditTitle.value.length;
         inputEditTitle.setSelectionRange(length, length);
 
-        //listenes for a keypress and changes the title of the project
+        //listens for a keypress and changes the title of the project
         inputEditTitle.addEventListener('keydown', (e) => {
             if(e.key === 'Enter' || e.key === 'Escape'){
                 if(inputEditTitle.value === ""){
@@ -92,7 +99,7 @@ function createProjectDOM(title, id){
     })
 }
 
-//creates a add button and listenes for a click to create a new project
+//creates a add button and listens for a click to create a new project
 function createAddButton(){
     const addButton = document.createElement('button');
     addButton.classList.add('project-add-btn');
