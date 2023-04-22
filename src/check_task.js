@@ -7,6 +7,7 @@ export function checkTaskArray(index){
     //checks if the projectTaskArray is empty if so it creates a task add button and returns nothing
     if(projectArray[index].projectTaskArray.length === 0){
         createAddButton();
+        taskCards.setAttribute('dataset', `${index}`); 
         return;
     }
     //if the projectTaskArray is not empty it creates a new task div for every task in the array
@@ -28,7 +29,7 @@ export function checkTaskArray(index){
 }
 
 //deletes every child inside the taskCards div
-function deleteTaskElement(){
+export function deleteTaskElement(){
     while (taskCards.firstChild) {
         taskCards.removeChild(taskCards.firstChild);
     }

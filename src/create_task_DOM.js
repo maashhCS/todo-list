@@ -1,6 +1,6 @@
 import { checkTaskArray } from "./check_task";
 import { projectArray } from "./index";
-import { addTaskForm } from "./modal";
+import { addTaskForm, editTaskForm, showTask } from "./modal";
 
 export const taskCards = document.querySelector('.task-cards');
 function createTaskDOM(title, description, priority, dueDate, checklist, id){
@@ -72,6 +72,8 @@ function createTaskDOM(title, description, priority, dueDate, checklist, id){
 
     //listens for a click and changes the status of task checklist from true to false and vice versa
     taskChecklist.addEventListener('click', (e) => {
+        e.stopPropagation();
+
         if(projectArray[e.target.parentElement.parentElement.parentElement.attributes[1].value].projectTaskArray[e.target.parentElement.parentElement.attributes[1].value].checklist === false){
             projectArray[e.target.parentElement.parentElement.parentElement.attributes[1].value].projectTaskArray[e.target.parentElement.parentElement.attributes[1].value].checklist = true;
         }else {
@@ -81,8 +83,18 @@ function createTaskDOM(title, description, priority, dueDate, checklist, id){
 
     //listens for a click and deletes the task
     deleteTask.addEventListener('click', (e) => {
+        e.stopPropagation();
         projectArray[e.target.parentElement.parentElement.parentElement.parentElement.attributes[1].value].projectTaskArray.splice(e.currentTarget.parentElement.parentElement.attributes[1].value, 1);
         checkTaskArray(e.target.parentElement.parentElement.parentElement.parentElement.attributes[1].value);
+    })
+
+    editTask.addEventListener('click', (e) => {
+        e.stopPropagation();
+        editTaskForm(e.target.parentElement.parentElement.parentElement.parentElement.attributes[1].value, e.target.parentElement.parentElement.parentElement.attributes[1].value);
+    })
+
+    taskCard.addEventListener('click', (e) => {
+        showTask(taskCards.attributes[1].value, e.currentTarget.attributes[1].value);
     })
 }
 
@@ -98,6 +110,6 @@ function createAddButton(){
 
     addButton.addEventListener('click', () => {
         addTaskForm();
-    })
+    });
 }
 export { createTaskDOM, createAddButton };
