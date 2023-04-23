@@ -1,6 +1,7 @@
 import { projectArray } from "./index";
 import { createTask } from "./task"
 import { checkTaskArray } from "./check_task";
+import { updateLocalStorage } from "./storage_updater";
 
 const closeCreateTask = document.querySelector('#close-add-task-modal');
 const addTaskConfirmButton = document.querySelector('.confirm-add-form');
@@ -31,8 +32,8 @@ export function addTaskForm(){
         }
         projectArray[e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].children[1].children[0].attributes[1].value].projectTaskArray.push(createTask(addTaskTitle.value, addTaskDescription.value, addTaskPriority.value, addTaskDueDate.value, false));
         checkTaskArray(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[1].children[1].children[0].attributes[1].value);
-        
         clearAddTaskInputFields();
+        updateLocalStorage();
     });
 
     closeCreateTask.addEventListener('click', () => {
@@ -87,6 +88,7 @@ export function editTaskForm(projectIndex, taskIndex){
 
         checkTaskArray(projectIndex);
         clearEditTaskInputFields();
+        updateLocalStorage();
     });
 
     closeEditTask.addEventListener('click', () => {
@@ -126,7 +128,11 @@ export function showTask(projectIndex, taskIndex){
 
     closeShowTask.addEventListener('click', () => {
         clearShowTask();
-    })
+    });
+
+    modal.addEventListener('click', (e) => {
+        clearEditTaskInputFields();
+    });
 
     showModalTask.addEventListener('click', (e) => {
         e.preventDefault();

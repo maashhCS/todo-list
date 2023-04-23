@@ -152,7 +152,7 @@ header div {
 }
 
 .task-card{
-    width: 98%;
+    width: 100%;
     border: 2px #ffffff solid;
     border-radius: 5px;
     display: flex;

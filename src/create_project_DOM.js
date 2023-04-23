@@ -2,6 +2,7 @@ import { createProject } from "./projects";
 import { projectArray } from "./index";
 import { checkprojectArray} from "./check_project";
 import { checkTaskArray, deleteTaskElement } from "./check_task";
+import { updateLocalStorage } from "./storage_updater";
 
 const projectCards = document.querySelector('.project-cards');
 function createProjectDOM(title, id){
@@ -55,6 +56,7 @@ function createProjectDOM(title, id){
                 title = inputEditTitle.value;
                 projectArray[id].title = inputEditTitle.value;
                 inputEditTitle.replaceWith(projectTitle);
+                updateLocalStorage();
             }
         })
     }
@@ -87,6 +89,7 @@ function createProjectDOM(title, id){
                 title = inputEditTitle.value;
                 projectArray[id].title = inputEditTitle.value;
                 inputEditTitle.replaceWith(projectTitle);
+                updateLocalStorage();
             }
         })
     })
@@ -99,6 +102,7 @@ function createProjectDOM(title, id){
         projectArray.splice(e.target.parentElement.parentElement.parentElement.attributes[1].value, 1);
         checkprojectArray();
         deleteTaskElement();
+        updateLocalStorage();
     })
 }
 

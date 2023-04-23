@@ -1,4 +1,3 @@
-import { createTask } from "./task"
 import { projectArray } from "./index";
 
 const createProject = (title) => {

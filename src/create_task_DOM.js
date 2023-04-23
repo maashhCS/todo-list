@@ -1,6 +1,7 @@
 import { checkTaskArray } from "./check_task";
 import { projectArray } from "./index";
 import { addTaskForm, editTaskForm, showTask } from "./modal";
+import { updateLocalStorage } from "./storage_updater";
 
 export const taskCards = document.querySelector('.task-cards');
 function createTaskDOM(title, description, priority, dueDate, checklist, id){
@@ -76,8 +77,10 @@ function createTaskDOM(title, description, priority, dueDate, checklist, id){
 
         if(projectArray[e.target.parentElement.parentElement.parentElement.attributes[1].value].projectTaskArray[e.target.parentElement.parentElement.attributes[1].value].checklist === false){
             projectArray[e.target.parentElement.parentElement.parentElement.attributes[1].value].projectTaskArray[e.target.parentElement.parentElement.attributes[1].value].checklist = true;
+            updateLocalStorage();
         }else {
             projectArray[e.target.parentElement.parentElement.parentElement.attributes[1].value].projectTaskArray[e.target.parentElement.parentElement.attributes[1].value].checklist = false;
+            updateLocalStorage();
         }
     })
 
@@ -86,13 +89,16 @@ function createTaskDOM(title, description, priority, dueDate, checklist, id){
         e.stopPropagation();
         projectArray[e.target.parentElement.parentElement.parentElement.parentElement.attributes[1].value].projectTaskArray.splice(e.currentTarget.parentElement.parentElement.attributes[1].value, 1);
         checkTaskArray(e.target.parentElement.parentElement.parentElement.parentElement.attributes[1].value);
+        updateLocalStorage();
     })
 
+    //listens for a click and opens a modal to edit the task
     editTask.addEventListener('click', (e) => {
         e.stopPropagation();
         editTaskForm(e.target.parentElement.parentElement.parentElement.parentElement.attributes[1].value, e.target.parentElement.parentElement.parentElement.attributes[1].value);
     })
 
+    //shows the task information in a modal
     taskCard.addEventListener('click', (e) => {
         showTask(taskCards.attributes[1].value, e.currentTarget.attributes[1].value);
     })
