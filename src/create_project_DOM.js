@@ -22,14 +22,14 @@ function createProjectDOM(title, id){
 
     const editProjectTitleSVG = document.createElement('img');
     editProjectTitleSVG.setAttribute('draggable', 'false')
-    editProjectTitleSVG.setAttribute('src', '../src/svg/pencil-white.svg');
+    editProjectTitleSVG.setAttribute('src', './svg/pencil-white.svg');
 
     const deleteProject = document.createElement('button');
     deleteProject.classList.add('project-delete');
 
     const deleteProjectSVG = document.createElement('img');
     deleteProjectSVG.setAttribute('draggable', 'false')
-    deleteProjectSVG.setAttribute('src', '../src/svg/trash-can-outline-white.svg');
+    deleteProjectSVG.setAttribute('src', './svg/trash-can-outline-white.svg');
 
     projectCards.appendChild(projectCard);
     projectCard.appendChild(projectTitle);
@@ -112,7 +112,7 @@ function createAddButton(){
     addButton.classList.add('project-add-btn');
 
     const addButtonSVG = document.createElement('img');
-    addButtonSVG.setAttribute('src', '../src/svg/plus-box-outline-white.svg');
+    addButtonSVG.setAttribute('src', './svg/plus-box-outline-white.svg');
     projectCards.appendChild(addButton);
     addButton.appendChild(addButtonSVG);
 

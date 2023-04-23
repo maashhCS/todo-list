@@ -49,14 +49,14 @@ function createTaskDOM(title, description, priority, dueDate, checklist, id){
 
     const editTaskSVG = document.createElement('img');
     editTaskSVG.setAttribute('draggable', 'false')
-    editTaskSVG.setAttribute('src', '../src/svg/pencil-white.svg');
+    editTaskSVG.setAttribute('src', './svg/pencil-white.svg');
 
     const deleteTask = document.createElement('button');
     deleteTask.classList.add('task-delete');
 
     const deleteTaskSVG = document.createElement('img');
     deleteTaskSVG.setAttribute('draggable', 'false')
-    deleteTaskSVG.setAttribute('src', '../src/svg/trash-can-outline-white.svg');
+    deleteTaskSVG.setAttribute('src', './svg/trash-can-outline-white.svg');
 
     taskCards.appendChild(taskCard);
     taskCard.appendChild(checklistPriorityDiv);
@@ -110,7 +110,7 @@ function createAddButton(){
     addButton.classList.add('project-add-btn');
 
     const addButtonSVG = document.createElement('img');
-    addButtonSVG.setAttribute('src', '../src/svg/plus-box-outline-white.svg');
+    addButtonSVG.setAttribute('src', './svg/plus-box-outline-white.svg');
     taskCards.appendChild(addButton);
     addButton.appendChild(addButtonSVG);
 
